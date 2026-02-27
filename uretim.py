@@ -29,20 +29,18 @@ def uretim_surecini_baslat(item, hedef_adet):
 
 def uretim_yap(item):
 	senaryo = _uretim_senaryosu_bul(item)
+	if senaryo == None:
+		return
+	
 	GLOBAL_OBJECTS["hedef_uretim"] = senaryo["hedef_entity"]
 	_malzeme_yeterliligini_sagla(senaryo["hedef_entity"])
 	senaryo["uretim_fonksiyonu"](item)
-
 
 def _uretim_senaryosu_bul(item):
 	if item in URETIM_SENARYOLARI:
 		return URETIM_SENARYOLARI[item]
 
-	errorMessage = join_args([
-		"Elde edilmek istenen ürün için (",
-		item,
-		") üretim senaryosu bulunamadı",
-	])
+	errorMessage = join_args(["Elde edilmek istenen ürün için (",item,") üretim senaryosu bulunamadı"])
 	error(errorMessage)
 	do_a_flip()
 	do_a_flip()
