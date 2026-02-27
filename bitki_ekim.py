@@ -28,7 +28,9 @@ def yeterli_malzeme_var_mi(entity):
 	for item in ihtiyaclar: 
 		ihtiyac_adeti = ihtiyaclar[item]
 		tum_arazinin_ihtiyaci = ihtiyac_adeti * get_world_size() * get_world_size()
-		if tum_arazinin_ihtiyaci > num_items(item):
-			return (False, item, tum_arazinin_ihtiyaci)
+		mevcut_adet = num_items(item)
+		if tum_arazinin_ihtiyaci > mevcut_adet:
+			eksik_adet = tum_arazinin_ihtiyaci - mevcut_adet
+			return (False, item, eksik_adet)
 			
 	return (True, None, None)
