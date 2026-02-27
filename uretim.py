@@ -35,9 +35,8 @@ def uretim_yap(item):
 
 
 def _uretim_senaryosu_bul(item):
-	senaryo = URETIM_SENARYOLARI.get(item)
-	if senaryo:
-		return senaryo
+	if item in URETIM_SENARYOLARI:
+		return URETIM_SENARYOLARI[item]
 
 	errorMessage = join_args([
 		"Elde edilmek istenen ürün için (",
