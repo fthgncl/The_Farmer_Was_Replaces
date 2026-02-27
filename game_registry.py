@@ -3,8 +3,7 @@ from error_utils import error
 
 GLOBAL_OBJECTS = {
 	"Items": Items,
-	"Entities": Entities,
-	"hedef_uretim": None
+	"Entities": Entities
 }
 
 def resolve_path(path):

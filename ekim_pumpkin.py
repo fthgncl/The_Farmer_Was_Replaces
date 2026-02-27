@@ -4,11 +4,7 @@ from zemin import zemini_uygun_hale_getir
 from bitki_ekim import plant_smart
 
 def pumpkin_uret(pumpkin):
-	if not GLOBAL_OBJECTS["hedef_uretim"] == Entities.Pumpkin:
-		GLOBAL_OBJECTS["hedef_uretim"] = Entities.Pumpkin
-	
-	else:
-		pumpkin_ek()
+	pumpkin_ek()
 	
 def pumpkin_ek():
 	olmamis_kabaklar = []

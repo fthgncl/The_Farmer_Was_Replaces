@@ -32,7 +32,6 @@ def uretim_yap(item):
 	if senaryo == None:
 		return
 	
-	GLOBAL_OBJECTS["hedef_uretim"] = senaryo["hedef_entity"]
 	_malzeme_yeterliligini_sagla(senaryo["hedef_entity"])
 	senaryo["uretim_fonksiyonu"](item)
 
