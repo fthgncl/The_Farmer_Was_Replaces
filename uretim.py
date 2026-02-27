@@ -56,7 +56,7 @@ def _malzeme_yeterliligini_sagla(entity):
 	if yeterlilik:
 		return
 
-	if eksik_item is None or ihtiyac_adeti is None:
+	if eksik_item == None or ihtiyac_adeti == None:
 		return
 
 	uretim_surecini_baslat(eksik_item, num_items(eksik_item) + ihtiyac_adeti)
