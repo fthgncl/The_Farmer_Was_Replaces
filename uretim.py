@@ -1,23 +1,48 @@
 from error_utils import error
 from string_utils import join_args
 from bitki_ekim import yeterli_malzeme_var_mi
-from game_registry import GLOBAL_OBJECTS
-from ekim_hay import hay_uret
-from ekim_pumpkin import pumpkin_uret
+
+from uret_hay import uret_hay
+from uret_wood import uret_wood
+from uret_carrot import uret_carrot
+from uret_pumpkin import uret_pumpkin
 
 son_bilgilendirme_zamani = 0
 
 URETIM_SENARYOLARI = {
 	Items.Hay: {
-		"uretim_fonksiyonu": hay_uret,
-		"hedef_entity": Entities.Grass,
+		"uretim_fonksiyonu": uret_hay,
+		"hedef_entities": [Entities.Grass],
+	},
+	Items.Wood: {
+		"uretim_fonksiyonu": uret_wood,
+		"hedef_entities":  [Entities.Bush, Entities.Tree],
+	},
+	Items.Carrot: {
+		"uretim_fonksiyonu": uret_carrot,
+		"hedef_entities": [Entities.Carrot],
 	},
 	Items.Pumpkin: {
-		"uretim_fonksiyonu": pumpkin_uret,
-		"hedef_entity": Entities.Pumpkin,
+		"uretim_fonksiyonu": uret_pumpkin,
+		"hedef_entities": [Entities.Pumpkin],
+	},
+#	Items.Cactus: {
+#		"uretim_fonksiyonu": uret_cactus,
+#		"hedef_entities": [Entities.Cactus],
+#	},
+#	Items.Weird_Substance: {
+#		"uretim_fonksiyonu": uret_weird_substance,
+#		"hedef_entities": [],
+#	},
+#	Items.Gold: {
+#		"uretim_fonksiyonu": uret_gold,
+#		"hedef_entities": [],
+#	},
+	Items.Power: {
+		"uretim_fonksiyonu": uret_power,
+		"hedef_entities": [Entities.Sunflower],
 	},
 }
-
 
 def uretim_surecini_baslat(item, hedef_adet):
 	mevcut_adet = num_items(item)
@@ -32,8 +57,8 @@ def uretim_yap(item):
 	if senaryo == None:
 		return
 	
-	_malzeme_yeterliligini_sagla(senaryo["hedef_entity"])
-	senaryo["uretim_fonksiyonu"](item)
+	_malzeme_yeterliligini_sagla(senaryo["hedef_entities"])
+	senaryo["uretim_fonksiyonu"]()
 
 def _uretim_senaryosu_bul(item):
 	if item in URETIM_SENARYOLARI:
@@ -47,15 +72,17 @@ def _uretim_senaryosu_bul(item):
 	return None
 
 
-def _malzeme_yeterliligini_sagla(entity):
-	yeterlilik, eksik_item, ihtiyac_adeti = yeterli_malzeme_var_mi(entity)
-	if yeterlilik:
-		return
-
-	if eksik_item == None or ihtiyac_adeti == None:
-		return
-
-	uretim_surecini_baslat(eksik_item, num_items(eksik_item) + ihtiyac_adeti)
+def _malzeme_yeterliligini_sagla(entities):
+	
+	for entity in entities:
+		yeterlilik, eksik_item, ihtiyac_adeti = yeterli_malzeme_var_mi(entity)
+		if yeterlilik:
+			return
+	
+		if eksik_item == None or ihtiyac_adeti == None:
+			return
+	
+		uretim_surecini_baslat(eksik_item, num_items(eksik_item) + ihtiyac_adeti)
 
 
 def uretim_bilgisi(item, mevcut_adet, hedef_adet):

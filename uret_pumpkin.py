@@ -1,9 +1,8 @@
 from hareket import her_yerde_uygula, git
-from game_registry import GLOBAL_OBJECTS
 from zemin import zemini_uygun_hale_getir
 from bitki_ekim import plant_smart
 
-def pumpkin_uret(pumpkin):
+def uret_pumpkin():
 	pumpkin_ek()
 	
 def pumpkin_ek():

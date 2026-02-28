@@ -1,7 +1,7 @@
 from companion import companion_process
 from zemin import zemini_uygun_hale_getir
 
-def plant_smart(entity):
+def plant_smart(entity, _sula = True):
 	
 	if get_entity_type() == entity:
 		return
@@ -9,7 +9,8 @@ def plant_smart(entity):
 	harvest()
 	zemini_uygun_hale_getir(entity)
 	plant(entity)
-	sula()
+	if _sula:
+		sula()
 	
 def harvest_combination(entity = None):
 	companion_process(entity)
