@@ -1,11 +1,13 @@
 from error_utils import error
 from string_utils import join_args
 from bitki_ekim import yeterli_malzeme_var_mi
+from configs import min_power
 
 from uret_hay import uret_hay
 from uret_wood import uret_wood
 from uret_carrot import uret_carrot
 from uret_pumpkin import uret_pumpkin
+from uret_power import uret_power
 
 son_bilgilendirme_zamani = 0
 
@@ -45,6 +47,7 @@ URETIM_SENARYOLARI = {
 }
 
 def uretim_surecini_baslat(item, hedef_adet):
+
 	mevcut_adet = num_items(item)
 	while mevcut_adet < hedef_adet:
 		uretim_bilgisi(item, mevcut_adet, hedef_adet)
@@ -61,6 +64,10 @@ def uretim_yap(item):
 	senaryo["uretim_fonksiyonu"]()
 
 def _uretim_senaryosu_bul(item):
+	
+	if num_items(Items.Power) < min_power:
+		return URETIM_SENARYOLARI[Items.Power]
+	
 	if item in URETIM_SENARYOLARI:
 		return URETIM_SENARYOLARI[item]
 
