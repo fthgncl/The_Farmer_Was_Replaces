@@ -25,9 +25,11 @@ def kilit_maliyetlerini_al():
 	return kilit_maliyet_listesi
 
 def oncelikli_kilidi_bul():
+	
 	acilabilecek_kilit = acilabilecek_kilidi_bul()
-	if acilabilecek_kilit:
-		return acilabilecek_kilit
+	while acilabilecek_kilit:
+		kilidi_ac()
+		acilabilecek_kilit = acilabilecek_kilidi_bul()
 
 	kilit_maliyet_listesi = kilit_maliyetlerini_al()
 	for kilit_ve_maliyeti in kilit_maliyet_listesi:
@@ -59,15 +61,3 @@ def kilidi_ac(kilit):
 		do_a_flip()
 		do_a_flip()
 	unlock(kilit)
-
-# İstersen tek çağrıda: hedef yoksa açar, varsa hedef döndürür
-def hedef_yoksa_kilidi_ac():
-	sonuc = hasat_hedefini_bul()
-	if not sonuc:
-		return None
-
-	if sonuc["item"] == None:
-		kilidi_ac(sonuc["unlock"])
-		return {"unlock": sonuc["unlock"], "acildi": True}
-
-	return sonuc

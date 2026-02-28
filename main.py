@@ -14,6 +14,5 @@ while True:
 	if hasat_hedefi:
 		hedef_urun = hasat_hedefi["item"]
 		hedef_adet = hasat_hedefi["hedef"]
-		if not hedef_urun == None and not hedef_adet == None:
-			uretim_surecini_baslat(hedef_urun,hedef_adet)
+		uretim_surecini_baslat(hedef_urun,hedef_adet)
 		
