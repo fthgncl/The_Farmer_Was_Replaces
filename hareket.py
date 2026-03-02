@@ -71,3 +71,29 @@ def git(x, y, geri_gel=False, fonksiyon = bos_fonksiyon, params = []):
 
 	if geri_gel:
 		git(start_x, start_y)
+		
+def capraz_uygula(fonksiyon, uygulama_ekseni = True, fnc_params = [], start_x = 0, start_y = 0, adim_sayisi = -1):
+	
+	git(start_x,start_y)
+	
+	if adim_sayisi == -1:
+		adim_sayisi = get_world_size() * get_world_size()
+	
+	while adim_sayisi > 0:
+		adim_sayisi = adim_sayisi - 1
+		fonksiyon_cagir(fonksiyon, fnc_params)
+		
+		if uygulama_ekseni:
+			move(East)
+			move(South)
+			if get_pos_x() == 0:
+				move(North)
+		else:
+			move(West)
+			move(South)
+			if get_pos_y() == 0:
+				move(East)
+		
+	
+		
+	
