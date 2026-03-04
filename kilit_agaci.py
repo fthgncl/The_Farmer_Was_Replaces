@@ -28,7 +28,7 @@ def oncelikli_kilidi_bul():
 	
 	acilabilecek_kilit = acilabilecek_kilidi_bul()
 	while acilabilecek_kilit:
-		kilidi_ac()
+		kilidi_ac(acilabilecek_kilit)
 		acilabilecek_kilit = acilabilecek_kilidi_bul()
 
 	kilit_maliyet_listesi = kilit_maliyetlerini_al()
